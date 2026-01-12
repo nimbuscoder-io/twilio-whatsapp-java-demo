@@ -15,28 +15,6 @@ public class WhatsAppWebhookDemoApp {
     post("/whatsapp", (req, res) -> {
       res.type("application/xml");
 
-      /**
-       * Sample request body is below. Each field is URL-encoded key-value pair.
-       * <pre>
-       *    SmsMessageSid=SMc5407f8f5bb5f1ce0e50f41c3b854xxx
-       *    NumMedia=0
-       *    ProfileName=Change+Me
-       *    MessageType=text
-       *    SmsSid=SMc5407f8f5bb5f1ce0e50f41c3b854xxx
-       *    WaId=6593883xxx
-       *    SmsStatus=received
-       *    Body=This+is+the+third+message
-       *    To=whatsapp%3A%2B14155238886
-       *    NumSegments=1
-       *    ReferralNumMedia=0
-       *    MessageSid=SMc5407f8f5bb5f1ce0e50f41c3b854xxx
-       *    AccountSid=AC6f8072f30b7392eaeca180a9cc65ac6b
-       *    ChannelMetadata=%7B%22type%22%3A%22whatsapp%22%2C%22data%22%3A%7B%22context%22%3A%7B%22ProfileName%22%3A%22Change+Me%22%2C%22WaId%22%3A%226593883xxx%22%7D%7D%7D
-       *    From=whatsapp%3A%2B6593883xxx
-       *    ApiVersion=2010-04-01
-       * </pre>
-       */
-
       System.out.println(
           "Received request=\n" + req.body() + "\nFields:\n" + req.body().replaceAll("&", "\n") + "\n-----\n");
 
