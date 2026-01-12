@@ -37,7 +37,8 @@ public class WhatsAppWebhookDemoApp {
        * </pre>
        */
 
-      System.out.println("Received request=\n" + req.body().replaceAll("&", "\n"));
+      System.out.println(
+          "Received request=\n" + req.body() + "\nFields:\n" + req.body().replaceAll("&", "\n") + "\n-----\n");
 
       final var messageBody = "Message received! Hello again from the Twilio Sandbox on behalf of Nimbus Coder.";
       final var whatsapp = new Message.Builder().body(new Body.Builder(messageBody).build()).build();
