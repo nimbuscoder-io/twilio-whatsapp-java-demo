@@ -6,6 +6,7 @@ import static spark.Spark.post;
 import com.twilio.twiml.MessagingResponse;
 import com.twilio.twiml.messaging.Body;
 import com.twilio.twiml.messaging.Message;
+import java.util.stream.Collectors;
 
 public class WhatsAppWebhookDemoApp {
 
@@ -15,8 +16,16 @@ public class WhatsAppWebhookDemoApp {
     post("/whatsapp", (req, res) -> {
       res.type("application/xml");
 
-      System.out.println(
-          "Received request=\n" + req.body() + "\nFields:\n" + req.body().replaceAll("&", "\n") + "\n-----\n");
+      final var headerValues = req.headers()
+          .stream()
+          .map(h -> h + "=" + req.headers(h))
+          .collect(Collectors.joining("\n\t\t"));
+
+      System.out.println("Received request:\n"
+          + "\tcontent-type: " + req.contentType() + "\n"
+          + "\theaders: " + headerValues + "\n"
+          + "\tbody:\n\t\t" + req.body().replaceAll("&", "\n\t\t")
+          + "\n-----\n");
 
       final var messageBody = "Message received! Hello again from the Twilio Sandbox on behalf of Nimbus Coder.";
       final var whatsapp = new Message.Builder().body(new Body.Builder(messageBody).build()).build();
