@@ -30,7 +30,7 @@ public class WhatsAppWebhookDemoApp {
       final var messageBody = "Message received! Hello again from the Twilio Sandbox on behalf of Nimbus Coder.";
       final var whatsapp = new Message.Builder().body(new Body.Builder(messageBody).build()).build();
       final var twiml = new MessagingResponse.Builder().message(whatsapp).build();
-
+      // Return the TwiML as XML
       return twiml.toXml();
     });
   }
